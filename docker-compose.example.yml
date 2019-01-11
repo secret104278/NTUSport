@@ -8,13 +8,13 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_USER: django
-      POSTGRES_PASSWORD: LZwwXe5BBR8JFUBVCze2juHEjGpxf98Z
+      POSTGRES_PASSWORD: {DATABASE_PASS_HERE}
       POSTGRES_DB: NTUSport
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
     environment:
-      POSTGRES_PASSWORD: LZwwXe5BBR8JFUBVCze2juHEjGpxf98Z
+      POSTGRES_PASSWORD: {DATABASE_PASS_HERE}
     restart: always
     volumes:
       - .:/code

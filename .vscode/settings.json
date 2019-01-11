@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "/Users/secret104278/.local/share/virtualenvs/NTUSport-VkwqhPiP/bin/python"
+    "python.pythonPath": "/Users/secret104278/.local/share/virtualenvs/NTUSport-VkwqhPiP/bin/python",
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+    ]
 }

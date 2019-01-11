@@ -218,4 +218,7 @@ Temporary Items
 # Ignore all local history of files
 .history
 
+### Docker Compose ###
+docker-compose.yml
+
 # End of https://www.gitignore.io/api/macos,python,django,visualstudiocode
