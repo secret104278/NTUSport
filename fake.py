@@ -94,29 +94,30 @@ class ScheduleFaker(ModelFaker):
     def fake(self, num=10):
         teams = Team.objects.all()
         comb = list(itertools.combinations(teams, 2))
-        shuffle(comb)
 
-        for i, team_set in enumerate(comb):
-            if i >= num:
-                break
-            with transaction.atomic():
-                schedule = Schedule.objects.create(
-                    date=self.faker.date_time_ad(
-                        tzinfo=pytz.timezone('Asia/Taipei'),
-                        start_datetime=datetime.datetime.now()
-                    )
-                )
-                referees = Student.objects.exclude(
-                    Q(department=team_set[0].department) |
-                    Q(department=team_set[1].department))
-                for team in team_set:
-                    Competition.objects.create(
-                        team=team,
-                        schedule=schedule
-                    )
+        for _ in range(num):
 
-                schedule.referees.set(referees[:2])
-                schedule.save()
+            shuffle(comb)
+
+            for team_set in comb:
+                with transaction.atomic():
+                    schedule = Schedule.objects.create(
+                        date=self.faker.date_time_ad(
+                            tzinfo=pytz.timezone('Asia/Taipei'),
+                            start_datetime=datetime.datetime.now()
+                        )
+                    )
+                    referees = Student.objects.exclude(
+                        Q(department=team_set[0].department) |
+                        Q(department=team_set[1].department))
+                    for team in team_set:
+                        Competition.objects.create(
+                            team=team,
+                            schedule=schedule
+                        )
+
+                    schedule.referees.set(referees[:2])
+                    schedule.save()
 
 
 class StatisticFaker(ModelFaker):
@@ -152,10 +153,25 @@ class StatisticFaker(ModelFaker):
 
 
 if __name__ == '__main__':
-    # StudentFaker().fake(num=50)
+    # StudentFaker().fake(num=10)
     # TeamFaker().fake()
-    # ScheduleFaker().fake()
+    # ScheduleFaker().fake(num=10)
 
-    f = StatisticFaker()
-    for comp in Competition.objects.all():
-        f.fake(comp)
+    # import pytz
+    # tz = pytz.timezone('UTC')
+
+    # for schedule in Schedule.objects.defer('date') .all():
+    #     year = 2019
+    #     month = 3
+    #     day = randint(1, 31)
+    #     date = datetime.datetime(year, month, day, 12, 30, tzinfo=tz)
+    #     schedule.date = date
+    #     schedule.save()
+
+for stats in Statistic.objects.all():
+    stats.tree_PM = randint(0, max(stats.three_PA-3, 0))
+    stats.save()
+
+    # f = StatisticFaker()
+    # for comp in Competition.objects.all():
+    #     f.fake(comp)

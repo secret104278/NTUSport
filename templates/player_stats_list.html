@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load stats_tag %}
+
+
+{% block content %}
+<div class="col-lg-8 col-md-12">
+    <div class="card">
+        <div class="card-header card-header-tabs card-header-info">
+            <div class="nav-tabs-navigation">
+                <div class="nav-tabs-wrapper">
+                    <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a href="#PPG" class="nav-link active show" data-toggle="tab">
+                                得分
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#RB" class="nav-link" data-toggle="tab">
+                                籃板
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#FTP" class="nav-link" data-toggle="tab">
+                                罰球
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#threePP" class="nav-link" data-toggle="tab">
+                                三分球
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#AST" class="nav-link" data-toggle="tab">
+                                助攻
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#STL" class="nav-link" data-toggle="tab">
+                                抄截
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#BLK" class="nav-link" data-toggle="tab">
+                                阻攻
+                                <div class="ripple-container"></div>
+                                <div class="ripple-container"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tab-content">
+                <div class="tab-pane active show" id="PPG">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均得分</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col:"PPG" %}
+                            <tr>
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h2" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
+                                <td>
+                                    <p class="h4">{{ statistic.result|floatformat }} points</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="RB">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均籃板數</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col_sum:"OR__avg,DR__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.result|floatformat }} 個</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="FTP">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均罰球數</th>
+                                <th>罰球命中率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col_perc:"FTM__avg,FTA__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.FTA__avg|floatformat }}</td>
+                                <td>{{ statistic.result|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="threePP">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均三分球出手數</th>
+                                <th>三分球命中率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col_perc:"three_PM__avg,three_PA__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.three_PA__avg|floatformat }}</td>
+                                <td>{{ statistic.result|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="AST">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均助攻</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col:"AST__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.AST__avg|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="STL">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均抄截</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col:"STL__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.STL__avg|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="BLK">
+                    <table class="table">
+                        <thead class="text-info">
+                            <tr>
+                                <th></th>
+                                <th>系所</th>
+                                <th>場均阻攻</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for statistic in object_list|get_col:"BLK__avg" %}
+                            <tr>
+                                <td>{{ statistic.player__user__username }}</td>
+                                <td>{{ statistic.player__department }}</td>
+                                <td>{{ statistic.BLK__avg|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

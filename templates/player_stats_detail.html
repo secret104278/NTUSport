@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+            </div>
+            <div class="card-body">
+                <h6 class="card-category text-gray">{{ object.department }}</h6>
+                <h4 class="card-title"> {{ object.user.last_name }}{{ object.user.first_name }} </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">language</i>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr class="text-info">
+                            <th class="text-center">PPG</th>
+                            <th class="text-center">FGA</th>
+                            <th class="text-center">FGM</th>
+                            <th class="text-center">3PA</th>
+                            <th class="text-center">3PM</th>
+                            <th class="text-center">FTA</th>
+                            <th class="text-center">FTM</th>
+                            <th class="text-center">OR</th>
+                            <th class="text-center">DR</th>
+                            <th class="text-center">BS</th>
+                            <th class="text-center">AST</th>
+                            <th class="text-center">BLK</th>
+                            <th class="text-center">STL</th>
+                            <th class="text-center">TO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>{{summary.PPG}}</td>
+                            <td>{{summary.FGA__avg}}</td>
+                            <td>{{summary.FGM__avg}}</td>
+                            <td>{{summary.three_PA__avg}}</td>
+                            <td>{{summary.three_PM__avg}}</td>
+                            <td>{{summary.FTA__avg}}</td>
+                            <td>{{summary.FTM__avg}}</td>
+                            <td>{{summary.OR__avg}}</td>
+                            <td>{{summary.DR__avg}}</td>
+                            <td>{{summary.BS__avg}}</td>
+                            <td>{{summary.AST__avg}}</td>
+                            <td>{{summary.BLK__avg}}</td>
+                            <td>{{summary.STL__avg}}</td>
+                            <td>{{summary.TO__avg}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+
+from schedule.views import PlayerStatsListView
+from player.views import PlayerDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^playerDetail/(?P<pk>[0-9]+)/$',
+        PlayerDetailView.as_view(), name='playerDetail'),
+    url(r'^playerStatsList/', PlayerStatsListView.as_view(), name='playerStatsList')
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
