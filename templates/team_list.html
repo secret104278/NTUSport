@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<div class="container">
+    <h3 class="text-gray">球隊數據</h3>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header card-header-icon card-header-info">
+        <div class="card-icon">
+            <i class="material-icons">list</i>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr class="text-info">
+                    <th class="text-center"></th>
+                    <th class="text-center">勝場數</th>
+                    <th class="text-center">敗場數</th>
+                    <th class="text-center">隊長</th>
+                    <th class="text-center">隊員數</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+
+                {% for team in object_list %}
+                <tr>
+                    <td class="td-name"><a class="text-info h3" href="/teamDetail/{{ team.id }}">
+                            {{team.department}}</a></td>
+                    <td>{{team.comp_stat.0}}</td>
+                    <td>{{team.comp_stat.1}}</td>
+                    <td class="td-name"><a class="text-info" href="/playerDetail/{{ team.caption.id }}">
+                            {{ team.caption.user.last_name }}{{ team.caption.user.first_name }}</a></td>
+                    <td>{{team.players.all|length}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock content %}

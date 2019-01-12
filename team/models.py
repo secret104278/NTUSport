@@ -28,6 +28,17 @@ class Team(models.Model):
     players = models.ManyToManyField(Student)
     department = models.CharField(max_length=4)
 
+    @property
+    def comp_stat(self):
+        win_num = 0
+        loss_num = 0
+        for comp in self.competition_set.all():
+            if comp.schedule.win == self:
+                win_num += 1
+            else:
+                loss_num += 1
+        return win_num, loss_num
+
     def __str__(self):
         return '%s, Number of players: %i' % (self.department, self.players.count())
 

@@ -3,9 +3,7 @@ import datetime
 from django.views.generic import ListView
 from django.db.models import Avg, Sum
 
-from .models import Statistic
-
-# Create your views here.
+from .models import Statistic, Schedule
 
 
 class PlayerStatsListView(ListView):
@@ -26,3 +24,8 @@ class PlayerStatsListView(ListView):
         )
 
         return stats
+
+
+class ScheduleListView(ListView):
+    model = Schedule
+    template_name = 'schedule_list.html'

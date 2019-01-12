@@ -18,12 +18,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from schedule.views import PlayerStatsListView
+from schedule.views import PlayerStatsListView, ScheduleListView
 from player.views import PlayerDetailView
+from team.views import TeamListView, TeamDetailView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^playerDetail/(?P<pk>[0-9]+)/$',
+    url(r'^scheduleList', ScheduleListView.as_view(), name='scheduleList'),
+    url(r'^playerDetail/(?P<pk>[0-9]+)',
         PlayerDetailView.as_view(), name='playerDetail'),
-    url(r'^playerStatsList/', PlayerStatsListView.as_view(), name='playerStatsList')
+    url(r'^playerStatsList', PlayerStatsListView.as_view(), name='playerStatsList'),
+    url(r'^teamList', TeamListView.as_view(), name='teamList'),
+    url(r'^teamDetail/(?P<pk>[0-9]+)',
+        TeamDetailView.as_view(), name='teamDetail'),
+    url(r'^', PlayerStatsListView.as_view(), name='playerStatsList'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

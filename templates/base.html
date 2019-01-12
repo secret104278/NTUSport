@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    NTUBA 台大聯盟
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -42,20 +42,20 @@
               <p>比分</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == " schedule" %}active{% endif %}">
-            <a class="nav-link" href="#0">
+          <li class="nav-item {% if request.resolver_match.url_name == "scheduleList" %}active{% endif %}">
+            <a class="nav-link" href="/scheduleList/">
               <i class="material-icons">today</i>
               <p>賽程</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == " playerStatsList" %}active{% endif %}">
+          <li class="nav-item {% if request.resolver_match.url_name == "playerStatsList" %}active{% endif %}">
             <a class="nav-link" href="/playerStatsList/">
               <i class="material-icons">directions_run</i>
               <p>球員數據</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == " teamStats" %}active{% endif %}">
-            <a class="nav-link" href="#0">
+          <li class="nav-item {% if request.resolver_match.url_name == "teamList" %}active{% endif %}">
+            <a class="nav-link" href="/teamList/">
               <i class="material-icons">people</i>
               <p>球隊數據</p>
             </a>
@@ -69,7 +69,8 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">球員數據</a>
+            {% block navbar %}
+            {% endblock navbar %}
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
             aria-expanded="false" aria-label="Toggle navigation">

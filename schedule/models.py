@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Avg, Sum
 
 from team.models import Team
 from player.models import Student
@@ -11,6 +12,13 @@ class Schedule(models.Model):
         Team,
         through='Competition',
         through_fields=('schedule', 'team')
+    )
+    win = models.ForeignKey(
+        Team,
+        related_name='win_schedule',
+        related_query_name='win_schedule',
+        on_delete=models.CASCADE,
+        null=True
     )
     referees = models.ManyToManyField(Student)
     date = models.DateTimeField()
@@ -36,6 +44,14 @@ class Schedule(models.Model):
             raise ValidationError(
                 _('One schedule should envlove only two teams.')
             )
+
+    def save(self, *args, **kwargs):
+        comps = Competition.objects.filter(schedule=self).values(
+            'team__id')
+        win_team = Statistic.objects.filter(competition__team__id__in=comps).values(
+            'competition__team__id').annotate(points=Sum('PTS')).order_by('-points').first().get('competition__team__id')
+        self.win = Team.objects.get(id=win_team)
+        super(Schedule, self).save(*args, **kwargs)
 
 
 class Competition(models.Model):

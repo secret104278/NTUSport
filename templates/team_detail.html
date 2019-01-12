@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+<button class="btn btn-default btn-round">
+    <a class="text-white" href="/teamList/">
+        <i class="material-icons">arrow_back_ios</i>球隊數據
+    </a>
+</button>
+{% endblock navbar %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://tw.global.nba.com/media/img/teams/00/logos/BOS_logo.svg"></a>
+            </div>
+            <div class="card-body">
+                <h6 class="h3 card-category text-gray">{{ object.department }}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">language</i>
+                </div>
+            </div>
+            <div style="overflow: auto;" class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr class="text-info">
+                            <th class="text-center">PPG</th>
+                            <th class="text-center">FGA</th>
+                            <th class="text-center">FGM</th>
+                            <th class="text-center">3PA</th>
+                            <th class="text-center">3PM</th>
+                            <th class="text-center">FTA</th>
+                            <th class="text-center">FTM</th>
+                            <th class="text-center">OR</th>
+                            <th class="text-center">DR</th>
+                            <th class="text-center">BS</th>
+                            <th class="text-center">AST</th>
+                            <th class="text-center">BLK</th>
+                            <th class="text-center">STL</th>
+                            <th class="text-center">TO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>{{summary.PPG|floatformat}}</td>
+                            <td>{{summary.FGA__avg|floatformat}}</td>
+                            <td>{{summary.FGM__avg|floatformat}}</td>
+                            <td>{{summary.three_PA__avg|floatformat}}</td>
+                            <td>{{summary.three_PM__avg|floatformat}}</td>
+                            <td>{{summary.FTA__avg|floatformat}}</td>
+                            <td>{{summary.FTM__avg|floatformat}}</td>
+                            <td>{{summary.OR__avg|floatformat}}</td>
+                            <td>{{summary.DR__avg|floatformat}}</td>
+                            <td>{{summary.BS__avg|floatformat}}</td>
+                            <td>{{summary.AST__avg|floatformat}}</td>
+                            <td>{{summary.BLK__avg|floatformat}}</td>
+                            <td>{{summary.STL__avg|floatformat}}</td>
+                            <td>{{summary.TO__avg|floatformat}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header card-header-text card-header-rose">
+                <div class="card-text">
+                    <h4 class="card-title">最高得分</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card  card-profile">
+                    <div class="card-avatar">
+                        <a><img style="width: 200px;height: 200px;object-fit: cover;margin: -25px 0 0 -50px;" class="img"
+                                src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+                    </div>
+                    <div class="card-body">
+                        <a class="text-gray" href="/playerDetail/{{ highest_PTS.id }}">{{ highest_PTS }}</a>
+                        <h4 class="card-title">場均 {{ PTS|floatformat }} 分</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header card-header-text card-header-rose">
+                <div class="card-text">
+                    <h4 class="card-title">最強罰球</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card  card-profile">
+                    <div class="card-avatar">
+                        <a><img style="width: 200px;height: 200px;object-fit: cover;margin: -25px 0 0 -50px;" class="img"
+                                src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+                    </div>
+                    <div class="card-body">
+                        <a class="text-gray" href="/playerDetail/{{ highest_FTM.id }}">{{ highest_FTM }}</a>
+                        <h4 class="card-title">場均 {{ FTM|floatformat }} </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header card-header-text card-header-rose">
+                <div class="card-text">
+                    <h4 class="card-title">最強助攻</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card  card-profile">
+                    <div class="card-avatar">
+                        <a><img style="width: 200px;height: 200px;object-fit: cover;margin: -25px 0 0 -50px;" class="img"
+                                src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+                    </div>
+                    <div class="card-body">
+                        <a class="text-gray" href="/playerDetail/{{ highest_AST.id }}">{{ highest_AST }}</a>
+                        <h4 class="card-title">場均 {{ AST|floatformat }} </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">people</i>
+                </div>
+            </div>
+            <div style="overflow: auto;" class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+
+                            {% for player in object.players.all %}
+                            <td>
+                                <div class="card  card-profile">
+                                    <div class="card-avatar">
+                                        <a><img style="width: 200px;height: 200px;object-fit: cover;margin: -25px 0 0 -50px;"
+                                                class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <a class="text-gray" href="/playerDetail/{{ player.id }}">{{ player }}</a>
+                                    </div>
+                                </div>
+                            </td>
+                            {% endfor %}
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
