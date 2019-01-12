@@ -137,11 +137,11 @@ class StatisticFaker(ModelFaker):
                         MIN=randint(0, 48),
                         PTS=randint(0, 20),
                         FGA=fga,
-                        FGM=randint(0, fga),
+                        FGM=randint(0, max(fga-3,0)),
                         three_PA=three_pa,
-                        three_PM=randint(0, three_pa),
+                        three_PM=randint(0, max(three_pa-3,0)),
                         FTA=fta,
-                        FTM=randint(0, fta),
+                        FTM=randint(0, max(fta-3,0)),
                         OR=randint(0, 10),
                         DR=randint(0, 10),
                         BS=randint(0, 3),
@@ -153,25 +153,25 @@ class StatisticFaker(ModelFaker):
 
 
 if __name__ == '__main__':
-    # StudentFaker().fake(num=10)
-    # TeamFaker().fake()
-    # ScheduleFaker().fake(num=10)
+    StudentFaker().fake(num=10)
+    TeamFaker().fake()
+    ScheduleFaker().fake(num=10)
 
-    # import pytz
-    # tz = pytz.timezone('UTC')
+    import pytz
+    tz = pytz.timezone('UTC')
 
-    # for schedule in Schedule.objects.defer('date') .all():
-    #     year = 2019
-    #     month = 3
-    #     day = randint(1, 31)
-    #     date = datetime.datetime(year, month, day, 12, 30, tzinfo=tz)
-    #     schedule.date = date
-    #     schedule.save()
+    for schedule in Schedule.objects.defer('date') .all():
+        year = 2019
+        month = 3
+        day = randint(1, 31)
+        date = datetime.datetime(year, month, day, 12, 30, tzinfo=tz)
+        schedule.date = date
+        schedule.save()
 
-for stats in Statistic.objects.all():
-    stats.tree_PM = randint(0, max(stats.three_PA-3, 0))
-    stats.save()
+#for stats in Statistic.objects.all():
+#    stats.tree_PM = randint(0, max(stats.three_PA-3, 0))
+#    stats.save()
 
-    # f = StatisticFaker()
-    # for comp in Competition.objects.all():
-    #     f.fake(comp)
+    f = StatisticFaker()
+    for comp in Competition.objects.all():
+        f.fake(comp)

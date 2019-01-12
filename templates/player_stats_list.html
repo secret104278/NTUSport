@@ -67,7 +67,7 @@
                 <div class="tab-pane active show" id="PPG">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均得分</th>
@@ -75,7 +75,7 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col:"PPG" %}
-                            <tr>
+                            <tr class="text-center">
                                 <td>
                                     <div class="img-container">
                                         <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
@@ -83,7 +83,7 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h2" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
@@ -98,7 +98,7 @@
                 <div class="tab-pane" id="RB">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均籃板數</th>
@@ -106,9 +106,18 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col_sum:"OR__avg,DR__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.result|floatformat }} 個</td>
                             </tr>
                             {% endfor %}
@@ -118,7 +127,7 @@
                 <div class="tab-pane" id="FTP">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均罰球數</th>
@@ -127,9 +136,18 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col_perc:"FTM__avg,FTA__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.FTA__avg|floatformat }}</td>
                                 <td>{{ statistic.result|floatformat }}</td>
                             </tr>
@@ -140,18 +158,27 @@
                 <div class="tab-pane" id="threePP">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
-                                <th>場均三分球出手數</th>
-                                <th>三分球命中率</th>
+                                <th>場均三分出手</th>
+                                <th>三分命中率</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col_perc:"three_PM__avg,three_PA__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.three_PA__avg|floatformat }}</td>
                                 <td>{{ statistic.result|floatformat }}</td>
                             </tr>
@@ -162,7 +189,7 @@
                 <div class="tab-pane" id="AST">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均助攻</th>
@@ -170,9 +197,18 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col:"AST__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.AST__avg|floatformat }}</td>
                             </tr>
                             {% endfor %}
@@ -182,7 +218,7 @@
                 <div class="tab-pane" id="STL">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均抄截</th>
@@ -190,9 +226,18 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col:"STL__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.STL__avg|floatformat }}</td>
                             </tr>
                             {% endfor %}
@@ -202,7 +247,7 @@
                 <div class="tab-pane" id="BLK">
                     <table class="table">
                         <thead class="text-info">
-                            <tr>
+                            <tr class="text-center">
                                 <th></th>
                                 <th>系所</th>
                                 <th>場均阻攻</th>
@@ -210,9 +255,18 @@
                         </thead>
                         <tbody>
                             {% for statistic in object_list|get_col:"BLK__avg" %}
-                            <tr>
-                                <td>{{ statistic.player__user__username }}</td>
-                                <td>{{ statistic.player__department }}</td>
+                            <tr class="text-center">
+                                <td>
+                                    <div class="img-container">
+                                        <img width="40%" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"
+                                            alt="...">
+                                    </div>
+                                </td>
+                                <td class="td-name">
+                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                        {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
+                                    <br><small>{{ statistic.player__department }}</small>
+                                </td>
                                 <td>{{ statistic.BLK__avg|floatformat }}</td>
                             </tr>
                             {% endfor %}

@@ -65,5 +65,69 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-chart card-header-warning">
+                <div class="ct-chart" id="PTGChart"></div>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">PTG history</h4>
+                <p class="card-category"><span class="{% if PTS_increase %}text-success{% else %}text-warning{% endif %}"><i
+                            class="fa {% if PTS_increase %}fa-long-arrow-up{% else %}fa-long-arrow-down{% endif %}"></i>
+                        {{PTS_delta|floatformat}}
+                    </span>
+                    {% if PTS_increase %}increase{% else %}decrease{% endif %} in today PTG.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-chart card-header-success">
+                <div class="ct-chart" id="REBChart"></div>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Rebounce history</h4>
+                <p class="card-category"><span class="{% if REB_increase %}text-success{% else %}text-warning{% endif %}"><i
+                            class="fa {% if REB_increase %}fa-long-arrow-up{% else %}fa-long-arrow-down{% endif %}"></i>
+                        {{REB_delta|floatformat}}
+                    </span>
+                    {% if REB_increase %}increase{% else %}decrease{% endif %} in today Rebounce.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block script %}
+<script>
+    dataPTGChart = {
+        series: [{{ PTS }}]
+    };
+
+    optionsPTGChart = {
+        high: {{ PTS_high }},
+    }
+
+    var PTGChart = new Chartist.Line('#PTGChart', dataPTGChart, optionsPTGChart);
+
+    md.startAnimationForLineChart(PTGChart);
+
+    dataREBChart = {
+        series: [{{ REB }}]
+    };
+
+    optionsREBChart = {
+        high: {{ REB_high }},
+    }
+
+    var REBChart = new Chartist.Line('#REBChart', dataREBChart, optionsREBChart);
+
+    md.startAnimationForLineChart(REBChart);
+</script>
+{% endblock script %}
+
+
+
 
 {% endblock content %}
