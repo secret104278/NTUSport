@@ -17,11 +17,14 @@
             <div class="card-avatar">
                 <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
             </div>
-            <div class="card-body">
-                <h3 class="card-title"> 得分王 </h3>
-                <h6 class="card-category text-gray">{{ highest_PTS.department }}</h6>
-                <h4 class="card-title"> {{ highest_PTS.user.last_name }}{{ highest_PTS.user.first_name }} </h4>
-            </div>
+            <a href="/playerDetail/{{ highest_PTS.id }}">
+                <div class="card-body">
+                    <h3 class="card-title"> 得分王 </h3>
+                    <h6 class="card-category text-gray">{{ highest_PTS.department }}</h6>
+                    <h4 class="card-title"> {{ highest_PTS.user.last_name }}{{ highest_PTS.user.first_name }} </h4>
+                </div>
+            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-12">
@@ -29,11 +32,14 @@
             <div class="card-avatar">
                 <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
             </div>
-            <div class="card-body">
-                <h3 class="card-title"> 罰球王 </h3>
-                <h6 class="card-category text-gray">{{ highest_FTM.department }}</h6>
-                <h4 class="card-title"> {{ highest_FTM.user.last_name }}{{ highest_FTM.user.first_name }} </h4>
-            </div>
+            <a href="/playerDetail/{{ highest_FTM.id }}">
+                <div class="card-body">
+                    <h3 class="card-title"> 罰球王 </h3>
+                    <h6 class="card-category text-gray">{{ highest_FTM.department }}</h6>
+                    <h4 class="card-title"> {{ highest_FTM.user.last_name }}{{ highest_FTM.user.first_name }} </h4>
+                </div>
+            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-12">
@@ -41,11 +47,14 @@
             <div class="card-avatar">
                 <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
             </div>
-            <div class="card-body">
-                <h3 class="card-title"> 助攻王 </h3>
-                <h6 class="card-category text-gray">{{ highest_AST.department }}</h6>
-                <h4 class="card-title"> {{ highest_AST.user.last_name }}{{ highest_AST.user.first_name }} </h4>
-            </div>
+            <a href="/playerDetail/{{ highest_AST.id }}">
+                <div class="card-body">
+                    <h3 class="card-title"> 助攻王 </h3>
+                    <h6 class="card-category text-gray">{{ highest_AST.department }}</h6>
+                    <h4 class="card-title"> {{ highest_AST.user.last_name }}{{ highest_AST.user.first_name }} </h4>
+                </div>
+            </a>
+
         </div>
     </div>
     <div class="col-lg-3 col-md-12">
@@ -53,11 +62,14 @@
             <div class="card-avatar">
                 <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
             </div>
-            <div class="card-body">
-                <h3 class="card-title"> 籃板王</h3>
-                <h6 class="card-category text-gray">{{ highest_REB.department }}</h6>
-                <h4 class="card-title"> {{ highest_REB.user.last_name }}{{ highest_REB.user.first_name }} </h4>
-            </div>
+            <a href="/playerDetail/{{ highest_REB.id }}">
+                <div class="card-body">
+                    <h3 class="card-title"> 籃板王</h3>
+                    <h6 class="card-category text-gray">{{ highest_REB.department }}</h6>
+                    <h4 class="card-title"> {{ highest_REB.user.last_name }}{{ highest_REB.user.first_name }} </h4>
+                </div>
+            </a>
+
         </div>
     </div>
 </div>
