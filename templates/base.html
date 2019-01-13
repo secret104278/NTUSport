@@ -36,10 +36,10 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item {% if request.resolver_match.url_name == " scores" %}active{% endif %}">
-            <a class="nav-link" href="#0">
+          <li class="nav-item {% if request.resolver_match.url_name == "overview" %}active{% endif %}">
+            <a class="nav-link" href="/index/">
               <i class="material-icons">dashboard</i>
-              <p>比分</p>
+              <p>總覽</p>
             </a>
           </li>
           <li class="nav-item {% if request.resolver_match.url_name == "schedule" %}active{% endif %}">

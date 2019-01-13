@@ -20,10 +20,11 @@ from django.conf.urls.static import static
 
 from schedule.views import PlayerStatsListView, ScheduleListView, ScheduleDetailView
 from player.views import PlayerDetailView
-from team.views import TeamListView, TeamDetailView
+from team.views import TeamListView, TeamDetailView, OverView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^index', OverView.as_view(), name='overview'),
     url(r'^scheduleList', ScheduleListView.as_view(), name='schedule'),
     url(r'^ScheduleDetail/(?P<pk>[0-9]+)',
         ScheduleDetailView.as_view(), name='schedule'),
@@ -33,5 +34,7 @@ urlpatterns = [
     url(r'^teamList', TeamListView.as_view(), name='teamStats'),
     url(r'^teamDetail/(?P<pk>[0-9]+)',
         TeamDetailView.as_view(), name='teamStats'),
-    url(r'^', PlayerStatsListView.as_view(), name='playerStats'),
+
+
+    url(r'^', OverView.as_view(), name='overview'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

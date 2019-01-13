@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+
+{% block navbar %}
+<div class="container">
+    <h3 class="text-gray">一週總覽</h3>
+</div>
+
+{% endblock navbar %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title"> 得分王 </h3>
+                <h6 class="card-category text-gray">{{ highest_PTS.department }}</h6>
+                <h4 class="card-title"> {{ highest_PTS.user.last_name }}{{ highest_PTS.user.first_name }} </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title"> 罰球王 </h3>
+                <h6 class="card-category text-gray">{{ highest_FTM.department }}</h6>
+                <h4 class="card-title"> {{ highest_FTM.user.last_name }}{{ highest_FTM.user.first_name }} </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title"> 助攻王 </h3>
+                <h6 class="card-category text-gray">{{ highest_AST.department }}</h6>
+                <h4 class="card-title"> {{ highest_AST.user.last_name }}{{ highest_AST.user.first_name }} </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://ak-static.cms.nba.com/wp-content/uploads/silos/nba/latest/220x350/203994.png"></a>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title"> 籃板王</h3>
+                <h6 class="card-category text-gray">{{ highest_REB.department }}</h6>
+                <h4 class="card-title"> {{ highest_REB.user.last_name }}{{ highest_REB.user.first_name }} </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">language</i>最近賽事
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th></th>
+                            <th>比數</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for schedule in recent_schedule %}
+                        <tr>
+                            <td>{{ schedule.date }}</td>
+                            <td>
+                                <a class="text-info h4" href="/teamDetail/{{ schedule.teams.all.0.id }}">{{schedule.teams.all.0.department}}</a>
+                                vs
+                                <a class="text-info h4" href="/teamDetail/{{ schedule.teams.all.1.id }}">{{schedule.teams.all.1.department}}</a>
+                            </td>
+                            <td>{{ schedule.points.0.points }}-{{ schedule.points.1.points }}</td>
+                            <td>
+                                <a href="/ScheduleDetail/{{ schedule.id }}" class="btn btn-success btn-round">
+                                    <i class="material-icons">equalizer</i> 詳細數據
+                                </a>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
