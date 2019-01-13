@@ -2,11 +2,9 @@
 
 
 {% block navbar %}
-<button class="btn btn-default btn-round">
-    <a class="text-white" href="/teamList/">
-        <i class="material-icons">arrow_back_ios</i>球隊數據
-    </a>
-</button>
+<a href="/teamList/" class="btn btn-default btn-round">
+    <i class="material-icons">arrow_back_ios</i>球隊數據
+</a>
 {% endblock navbar %}
 
 
@@ -166,6 +164,48 @@
                             {% endfor %}
 
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">language</i>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th></th>
+                            <th>比數</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for schedule in schedule_list %}
+                        <tr>
+                            <td>{{ schedule.date }}</td>
+                            <td>
+                                <a class="text-info h4" href="/teamDetail/{{ schedule.teams.all.0.id }}">{{schedule.teams.all.0.department}}</a>
+                                vs
+                                <a class="text-info h4" href="/teamDetail/{{ schedule.teams.all.1.id }}">{{schedule.teams.all.1.department}}</a>
+                            </td>
+                            <td>{{ schedule.points.0.points }}-{{ schedule.points.1.points }}</td>
+                            <td>
+                                <a href="/ScheduleDetail/{{ schedule.id }}" class="btn btn-success btn-round">
+                                    <i class="material-icons">equalizer</i> 數據分析
+                                </a>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

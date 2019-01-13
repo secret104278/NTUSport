@@ -42,19 +42,19 @@
               <p>比分</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == "scheduleList" %}active{% endif %}">
+          <li class="nav-item {% if request.resolver_match.url_name == "schedule" %}active{% endif %}">
             <a class="nav-link" href="/scheduleList/">
               <i class="material-icons">today</i>
               <p>賽程</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == "playerStatsList" %}active{% endif %}">
+          <li class="nav-item {% if request.resolver_match.url_name == "playerStats" %}active{% endif %}">
             <a class="nav-link" href="/playerStatsList/">
               <i class="material-icons">directions_run</i>
               <p>球員數據</p>
             </a>
           </li>
-          <li class="nav-item {% if request.resolver_match.url_name == "teamList" %}active{% endif %}">
+          <li class="nav-item {% if request.resolver_match.url_name == "teamStats" %}active{% endif %}">
             <a class="nav-link" href="/teamList/">
               <i class="material-icons">people</i>
               <p>球隊數據</p>

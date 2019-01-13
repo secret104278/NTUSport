@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Avg, Sum
+from django.db.models import F, Avg, Sum
 
 from team.models import Team
 from player.models import Student
@@ -46,12 +46,18 @@ class Schedule(models.Model):
             )
 
     def save(self, *args, **kwargs):
-        comps = Competition.objects.filter(schedule=self).values(
-            'team__id')
-        win_team = Statistic.objects.filter(competition__team__id__in=comps).values(
-            'competition__team__id').annotate(points=Sum('PTS')).order_by('-points').first().get('competition__team__id')
-        self.win = Team.objects.get(id=win_team)
+        win_team = Statistic.objects.filter(competition__schedule=self).values(
+            team_id=F('competition__team__id')).annotate(
+                points=Sum('PTS')).order_by('-points').first()
+        if win_team:
+            win_team_id = win_team.get('team_id')
+            self.win = Team.objects.get(id=win_team_id)
         super(Schedule, self).save(*args, **kwargs)
+
+    def points(self):
+        return Statistic.objects.filter(competition__schedule=self).values(
+            team_id=F('competition__team__id')).annotate(
+                points=Sum('PTS')).order_by('team_id')
 
 
 class Competition(models.Model):

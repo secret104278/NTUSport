@@ -35,7 +35,7 @@ class Team(models.Model):
         for comp in self.competition_set.all():
             if comp.schedule.win == self:
                 win_num += 1
-            else:
+            elif comp.schedule.win:
                 loss_num += 1
         return win_num, loss_num
 

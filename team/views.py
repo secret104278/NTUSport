@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.db.models import Avg, Sum
 
 from .models import Team
-from schedule.models import Competition, Statistic
+from schedule.models import Competition, Statistic, Schedule
 from player.models import Student
 
 
@@ -44,5 +44,8 @@ class TeamDetailView(DetailView):
         context['highest_PTS'] = Student.objects.get(id=highest_PTS_id)
         context['highest_FTM'] = Student.objects.get(id=highest_FTM_id)
         context['highest_AST'] = Student.objects.get(id=highest_AST_id)
+
+        context['schedule_list'] = Schedule.objects.filter(
+            competition__team=self.object)[:10]
 
         return context

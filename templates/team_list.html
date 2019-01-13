@@ -9,7 +9,7 @@
 {% block content %}
 
 <div class="card">
-    <div class="card-header card-header-icon card-header-info">
+    <div class="card-header card-header-icon card-header-rose">
         <div class="card-icon">
             <i class="material-icons">list</i>
         </div>
@@ -29,7 +29,7 @@
 
                 {% for team in object_list %}
                 <tr>
-                    <td class="td-name"><a class="text-info h3" href="/teamDetail/{{ team.id }}">
+                    <td class="td-name"><a class="text-info h3 font-weight-bold" href="/teamDetail/{{ team.id }}">
                             {{team.department}}</a></td>
                     <td>{{team.comp_stat.0}}</td>
                     <td>{{team.comp_stat.1}}</td>

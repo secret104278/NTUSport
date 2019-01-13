@@ -1,6 +1,6 @@
 import datetime
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.db.models import Avg, Sum
 
 from .models import Statistic, Schedule
@@ -29,3 +29,21 @@ class PlayerStatsListView(ListView):
 class ScheduleListView(ListView):
     model = Schedule
     template_name = 'schedule_list.html'
+    paginate_by = 10
+    queryset = Schedule.objects.all().order_by('teams__id').order_by('-date')
+
+
+class ScheduleDetailView(DetailView):
+    model = Schedule
+    template_name = 'schedule_detail.html'
+    queryset = Schedule.objects.all().order_by('teams__id')
+
+    def get_context_data(self, **kwargs):
+        context = super(ScheduleDetailView, self).get_context_data(**kwargs)
+        stats = Statistic.objects.filter(
+            competition__schedule=self.object).select_related('player__user')
+        context['t1_stat'] = stats.filter(
+            competition__team=self.object.teams.all()[0])
+        context['t2_stat'] = stats.filter(
+            competition__team=self.object.teams.all()[1])
+        return context

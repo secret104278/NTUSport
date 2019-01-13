@@ -137,11 +137,11 @@ class StatisticFaker(ModelFaker):
                         MIN=randint(0, 48),
                         PTS=randint(0, 20),
                         FGA=fga,
-                        FGM=randint(0, max(fga-3,0)),
+                        FGM=randint(0, max(fga-3, 0)),
                         three_PA=three_pa,
-                        three_PM=randint(0, max(three_pa-3,0)),
+                        three_PM=randint(0, max(three_pa-3, 0)),
                         FTA=fta,
-                        FTM=randint(0, max(fta-3,0)),
+                        FTM=randint(0, max(fta-3, 0)),
                         OR=randint(0, 10),
                         DR=randint(0, 10),
                         BS=randint(0, 3),
@@ -168,10 +168,13 @@ if __name__ == '__main__':
         schedule.date = date
         schedule.save()
 
-#for stats in Statistic.objects.all():
+# for stats in Statistic.objects.all():
 #    stats.tree_PM = randint(0, max(stats.three_PA-3, 0))
 #    stats.save()
 
     f = StatisticFaker()
     for comp in Competition.objects.all():
         f.fake(comp)
+
+    for schedule in Schedule.objects.all():
+        schedule.save()

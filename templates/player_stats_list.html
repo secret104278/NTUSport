@@ -8,9 +8,9 @@
 {% endblock navbar %}
 
 {% block content %}
-<div class="col-lg-8 col-md-12">
+<div class="col-lg-10 col-md-12">
     <div class="card">
-        <div class="card-header card-header-tabs card-header-info">
+        <div class="card-header card-header-tabs card-header-rose">
             <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                     <ul class="nav nav-tabs" data-tabs="tabs">
@@ -88,7 +88,7 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
@@ -119,11 +119,13 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.result|floatformat }} 個</td>
+                                <td>
+                                    <h4>{{ statistic.result|floatformat }} 個</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -149,12 +151,16 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.FTA__avg|floatformat }}</td>
-                                <td>{{ statistic.result|floatformat }}</td>
+                                <td>
+                                    <h4>{{ statistic.FTA__avg|floatformat }}</h4>
+                                </td>
+                                <td>
+                                    <h4>{{ statistic.result|floatformat }}</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -180,12 +186,16 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.three_PA__avg|floatformat }}</td>
-                                <td>{{ statistic.result|floatformat }}</td>
+                                <td>
+                                    <h4>{{ statistic.three_PA__avg|floatformat }}</h4>
+                                </td>
+                                <td>
+                                    <h4>{{ statistic.result|floatformat }}</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -210,11 +220,13 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.AST__avg|floatformat }}</td>
+                                <td>
+                                    <h4>{{ statistic.AST__avg|floatformat }}</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -239,11 +251,13 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.STL__avg|floatformat }}</td>
+                                <td>
+                                    <h4>{{ statistic.STL__avg|floatformat }}</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -268,11 +282,13 @@
                                     </div>
                                 </td>
                                 <td class="td-name">
-                                    <a class="text-info h3" href="/playerDetail/{{ statistic.player__id }}">
+                                    <a class="text-info h3 font-weight-bold" href="/playerDetail/{{ statistic.player__id }}">
                                         {{ statistic.player__user__last_name }}{{ statistic.player__user__first_name }}</a>
                                     <br><small>{{ statistic.player__department }}</small>
                                 </td>
-                                <td>{{ statistic.BLK__avg|floatformat }}</td>
+                                <td>
+                                    <h4>{{ statistic.BLK__avg|floatformat }}</h4>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>

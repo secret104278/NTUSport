@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+
+{% block navbar %}
+<a href="/scheduleList/" class="btn btn-default btn-round">
+    <i class="material-icons">arrow_back_ios</i>賽程
+</a>
+{% endblock navbar %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://tw.global.nba.com/media/img/teams/00/logos/BOS_logo.svg"></a>
+            </div>
+            <div class="card-body">
+                <h6 class="h3 card-category text-gray">{{ object.teams.all.0.department }}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="font-weight-bold text-center text-warning">
+                    {{ object.points.0.points }} - {{object.points.1.points }}</h1>
+                <h6 class="card-category text-center text-gray">{{ object.date }}</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card card-profile">
+            <div class="card-avatar">
+                <a><img class="img" src="https://tw.global.nba.com/media/img/teams/00/logos/BOS_logo.svg"></a>
+            </div>
+            <div class="card-body">
+                <h6 class="h3 card-category text-gray">{{ object.teams.all.1.department }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">list</i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="text-info text-center">
+                                <th></th>
+                                <th>MIN</th>
+                                <th>PTS</th>
+                                <th>FGA</th>
+                                <th>FGM</th>
+                                <th>3PA</th>
+                                <th>3PM</th>
+                                <th>FTA</th>
+                                <th>FTM</th>
+                                <th>OR</th>
+                                <th>DR</th>
+                                <th>AST</th>
+                                <th>BLK</th>
+                                <th>STL</th>
+                                <th>TO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stat in t1_stat %}
+                            <tr class="text-center">
+                                <td>{{stat.player}}</td>
+                                <td>{{stat.MIN}}</td>
+                                <td>{{stat.PTS}}</td>
+                                <td>{{stat.FGA}}</td>
+                                <td>{{stat.FGM}}</td>
+                                <td>{{stat.three_PA}}</td>
+                                <td>{{stat.three_PM}}</td>
+                                <td>{{stat.FTA}}</td>
+                                <td>{{stat.FTM}}</td>
+                                <td>{{stat.OR}}</td>
+                                <td>{{stat.DR}}</td>
+                                <td>{{stat.AST}}</td>
+                                <td>{{stat.BLK}}</td>
+                                <td>{{stat.STL}}</td>
+                                <td>{{stat.TO}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                    <i class="material-icons">list</i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table  table-hover">
+                        <thead>
+                            <tr class="text-info text-center">
+                                <th></th>
+                                <th>MIN</th>
+                                <th>PTS</th>
+                                <th>FGA</th>
+                                <th>FGM</th>
+                                <th>3PA</th>
+                                <th>3PM</th>
+                                <th>FTA</th>
+                                <th>FTM</th>
+                                <th>OR</th>
+                                <th>DR</th>
+                                <th>AST</th>
+                                <th>BLK</th>
+                                <th>STL</th>
+                                <th>TO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for stat in t2_stat %}
+                            <tr class="text-center">
+                                <td>{{stat.player}}</td>
+                                <td>{{stat.MIN}}</td>
+                                <td>{{stat.PTS}}</td>
+                                <td>{{stat.FGA}}</td>
+                                <td>{{stat.FGM}}</td>
+                                <td>{{stat.three_PA}}</td>
+                                <td>{{stat.three_PM}}</td>
+                                <td>{{stat.FTA}}</td>
+                                <td>{{stat.FTM}}</td>
+                                <td>{{stat.OR}}</td>
+                                <td>{{stat.DR}}</td>
+                                <td>{{stat.AST}}</td>
+                                <td>{{stat.BLK}}</td>
+                                <td>{{stat.STL}}</td>
+                                <td>{{stat.TO}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
