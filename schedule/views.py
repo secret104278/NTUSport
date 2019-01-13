@@ -11,11 +11,8 @@ class PlayerStatsListView(ListView):
     template_name = 'player_stats_list.html'
 
     def get_queryset(self):
-        stats = Statistic.objects.filter(
-            competition__schedule__date__date=datetime.date(2019, 3, 10)
-        )
-        stats = stats.values('player__user__first_name', 'player__user__last_name',
-                             'player__department', 'player__id')
+        stats = Statistic.objects.values('player__user__first_name', 'player__user__last_name',
+                                         'player__department', 'player__id')
         stats = stats.annotate(
             Avg('FGA'), Avg('FGM'), Avg('three_PA'), Avg('three_PM'),
             Avg('FTA'), Avg('FTM'), Avg('OR'), Avg('DR'), Avg('BS'),
